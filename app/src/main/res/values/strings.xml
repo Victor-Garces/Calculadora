@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Calculadora de prestamos</string>
+    <string name="intro">Bienvenidos al Simulador de Préstamos de Consumo</string>
+    <string name="intro2">Este sistema interactivo permite establecer el valor de
+                        la cuota de un préstamo de consumo, a partir de la información digitada por
+                        el usuario que corresponden al monto, la tasa de interés anual y el plazo
+                        solicitado expresados en meses.</string>
+</resources>

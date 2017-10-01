@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center_vertical"
+    tools:context="com.example.victorjaviergarces.mycalculator.DataActivity">
+
+    <EditText
+        android:id="@+id/my_monto_prestamo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Monto del prestamo en RD$"
+        android:gravity="center"
+        android:singleLine="true"
+        android:inputType="number" />
+    <EditText
+        android:id="@+id/my_tasa_interes"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Tasa de Interes"
+        android:gravity="center"
+        android:singleLine="true"
+        android:inputType="number"
+        android:maxLength="3"/>
+    <EditText
+        android:id="@+id/my_plazo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Plazo (Meses)"
+        android:gravity="center"
+        android:singleLine="true"
+        android:inputType="number"
+        android:maxLength="3"/>
+    <EditText
+        android:id="@+id/my_fecha"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Fecha"
+        android:gravity="center"
+        android:singleLine="true"
+        android:focusableInTouchMode="false"/>
+    <Button
+        android:id="@+id/my_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:text="ACEPTAR"/>
+
+</LinearLayout>
