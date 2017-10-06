@@ -12,6 +12,7 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.text.DateFormat;
 import java.util.Date;
@@ -37,31 +38,6 @@ public class DataActivity extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_data);
 
-    /*Envio de datos del Monto del Prestamo*/
-        aceptar = (Button) findViewById(R.id.my_button);
-
-        aceptar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(DataActivity.this,DesgloseActivity.class);
-
-                EditText text_monto = (EditText) findViewById(R.id.my_monto_prestamo);
-                String monto = text_monto.getText().toString();
-
-                EditText text_tasa = (EditText) findViewById(R.id.my_tasa_interes);
-                String tasa = text_tasa.getText().toString();
-
-                EditText text_plazo = (EditText) findViewById(R.id.my_plazo);
-                String plazo = text_plazo.getText().toString();
-
-                intent.putExtra("tasaInteres",tasa);
-                intent.putExtra("montoPrestamo",monto);
-                intent.putExtra("plazoMeses",plazo);
-
-                startActivity(intent);
-            }
-        });
-
     /*Seteo de la fecha*/
         tv = (TextView) findViewById(R.id.my_fecha);
         mCalendar = Calendar.getInstance();
@@ -80,11 +56,44 @@ public class DataActivity extends AppCompatActivity{
                     public void onDateSet(DatePicker datePicker, int year, int monthOfYear, int dayOfMonth) {
                         monthOfYear = monthOfYear+1;
                         tv.setText(dayOfMonth+"/"+monthOfYear+"/"+year);
+                        String t =tv.getText().toString();
+                        Toast.makeText(DataActivity.this,t,Toast.LENGTH_SHORT).show();
+
                     }
                 },year,month,day);
                 datePickerDialog.show();
             }
         });
+
+        /*Envio de datos del Monto del Prestamo*/
+
+        aceptar = (Button) findViewById(R.id.my_button);
+
+
+        aceptar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(DataActivity.this,DesgloseActivity.class);
+
+                EditText text_monto = (EditText) findViewById(R.id.my_monto_prestamo);
+                int monto = Integer.parseInt(text_monto.getText().toString());
+
+
+                EditText text_tasa = (EditText) findViewById(R.id.my_tasa_interes);
+                int interes = Integer.parseInt(text_tasa.getText().toString());
+
+                EditText text_plazo = (EditText) findViewById(R.id.my_plazo);
+                int plazo = Integer.parseInt(text_plazo.getText().toString());
+
+                intent.putExtra("tasaInteres",interes);
+                intent.putExtra("montoPrestamo",monto);
+                intent.putExtra("plazoMeses",plazo);
+
+                startActivity(intent);
+            }
+        });
+
+
     }
 
 }

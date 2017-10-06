@@ -1,9 +1,12 @@
 package com.example.victorjaviergarces.mycalculator;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.RelativeLayout;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
 
@@ -13,6 +16,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_main);
         findViewById(R.id.imageView).setOnClickListener(this);
         findViewById(R.id.my_text_imageView).setOnClickListener(this);
+
+        RelativeLayout rl = (RelativeLayout)findViewById(R.id.rel);
+        rl.setBackgroundColor(Color.WHITE);
     }
 
     @Override
@@ -20,4 +26,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         Intent intent = new Intent(this,DataActivity.class);
         startActivity(intent);
     }
-}
+
+
+    }
+
