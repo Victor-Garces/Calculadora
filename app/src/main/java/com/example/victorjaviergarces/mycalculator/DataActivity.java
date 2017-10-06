@@ -56,9 +56,6 @@ public class DataActivity extends AppCompatActivity{
                     public void onDateSet(DatePicker datePicker, int year, int monthOfYear, int dayOfMonth) {
                         monthOfYear = monthOfYear+1;
                         tv.setText(dayOfMonth+"/"+monthOfYear+"/"+year);
-                        String t =tv.getText().toString();
-                        Toast.makeText(DataActivity.this,t,Toast.LENGTH_SHORT).show();
-
                     }
                 },year,month,day);
                 datePickerDialog.show();
