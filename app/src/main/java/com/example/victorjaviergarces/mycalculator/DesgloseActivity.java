@@ -49,6 +49,7 @@ public class DesgloseActivity extends AppCompatActivity {
         double balance =  monto - amortizacion;
         // // // // //------------------------ // // // //
 
+
         TextView tb = (TextView) findViewById(R.id.topBar);
         tb.setText("\t\t\t"+"Cuotas"+"\t\t\t"+"Interes"+"\t\t\t"+"Amortizacion"+"\t\t\t"+"Balance");
 
