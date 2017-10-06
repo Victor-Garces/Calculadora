@@ -65,11 +65,10 @@ public class DataActivity extends AppCompatActivity{
         /*Envio de datos del Monto del Prestamo*/
 
         aceptar = (Button) findViewById(R.id.my_button);
-
-
         aceptar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 Intent intent = new Intent(DataActivity.this,DesgloseActivity.class);
 
                 EditText text_monto = (EditText) findViewById(R.id.my_monto_prestamo);
