@@ -27,7 +27,7 @@ public class DataActivity extends AppCompatActivity{
     int day,month,year;
     private SimpleDateFormat mDateFormat;
 
-    /*Variable de envio de datos*/
+        /*Variable de envio de datos*/
     Button aceptar;
 
 
