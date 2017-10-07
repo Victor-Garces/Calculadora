@@ -14,6 +14,9 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.text.SimpleDateFormat;
+import java.util.Locale;
+
 
 public class DataActivity extends AppCompatActivity{
 //********************************************************************************************/
@@ -22,8 +25,9 @@ public class DataActivity extends AppCompatActivity{
     Calendar mCalendar;
     TextView tv;
     int day,month,year;
+    private SimpleDateFormat mDateFormat;
 
-        /*Variable de envio de datos*/
+    /*Variable de envio de datos*/
     Button aceptar;
 
 
@@ -38,6 +42,8 @@ public class DataActivity extends AppCompatActivity{
         /*Seteo de la fecha*/
                 tv = (TextView) findViewById(R.id.my_fecha);
                 mCalendar = Calendar.getInstance();
+                mDateFormat = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
+
 
                 day = mCalendar.get(Calendar.DAY_OF_MONTH);
                 month = mCalendar.get(Calendar.MONTH)+1;
@@ -51,8 +57,11 @@ public class DataActivity extends AppCompatActivity{
                         DatePickerDialog datePickerDialog = new DatePickerDialog(DataActivity.this, new DatePickerDialog.OnDateSetListener() {
                             @Override
                             public void onDateSet(DatePicker datePicker, int year, int monthOfYear, int dayOfMonth) {
-                                monthOfYear = monthOfYear+1;
+                                monthOfYear+=1;
                                 tv.setText(dayOfMonth+"/"+monthOfYear+"/"+year);
+                                mCalendar.set(Calendar.YEAR,year);
+                                mCalendar.set(Calendar.MONTH,monthOfYear-1);
+                                mCalendar.set(Calendar.DAY_OF_MONTH,dayOfMonth);
                             }
                         },year,month,day);
 
@@ -70,9 +79,8 @@ public class DataActivity extends AppCompatActivity{
                 /*Datos del Monto del Prestamo*/
 
                 Intent intent = new Intent(DataActivity.this,DesgloseActivity.class);
-                intent = intent.putExtra("day",day);
-                intent = intent.putExtra("month",month);
-                intent = intent.putExtra("year",year);
+
+                String fechaa = (mDateFormat.format(mCalendar.getTime()));
 
                 EditText textMonto = (EditText) findViewById(R.id.my_monto_prestamo);
                 EditText textTasa = (EditText) findViewById(R.id.my_tasa_interes);
@@ -93,15 +101,12 @@ public class DataActivity extends AppCompatActivity{
                     intent.putExtra("tasaInteres",interes);
                     intent.putExtra("montoPrestamo",monto);
                     intent.putExtra("plazoMeses",plazo);
+                    intent.putExtra("fecha",fechaa);
 
                     startActivity(intent);
                 }
 
             }
         });
-
-
     }
-
 }
-
