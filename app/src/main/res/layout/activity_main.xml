@@ -5,18 +5,19 @@
     android:layout_height="fill_parent"
     android:orientation="vertical"
     android:id="@+id/rel"
-
     tools:context="com.example.victorjaviergarces.mycalculator.MainActivity">
 
     <!--Las dimensiones de la imagen pueden hacer que explote.-->
     <ImageView
+        tools:ignore = "ContentDescription"
         android:id="@+id/imageView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/pesos"
         android:layout_below="@+id/intro2"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        />
 
     <TextView
         android:id="@+id/intro"
@@ -37,7 +38,7 @@
         android:id="@+id/my_text_imageView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Tap to start"
+        android:text="@string/tap"
         android:layout_below="@+id/intro2"
         style="@style/tapToStart"/>
 </RelativeLayout>

@@ -14,11 +14,9 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.text.DateFormat;
-import java.util.Date;
 
 public class DataActivity extends AppCompatActivity{
-/********************************************************************************************/
+//********************************************************************************************/
 
         /*DatePicker Variables*/
     Calendar mCalendar;
@@ -29,7 +27,7 @@ public class DataActivity extends AppCompatActivity{
     Button aceptar;
 
 
-/********************************************************************************************/
+//********************************************************************************************/
 
     @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
@@ -62,7 +60,7 @@ public class DataActivity extends AppCompatActivity{
                     }
                 });
 
-/********************************************************************************************/
+//********************************************************************************************/
 
         aceptar = (Button) findViewById(R.id.my_button);
         aceptar.setOnClickListener(new View.OnClickListener() {

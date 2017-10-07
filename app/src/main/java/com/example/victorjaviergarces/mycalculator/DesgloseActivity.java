@@ -1,7 +1,6 @@
 package com.example.victorjaviergarces.mycalculator;
 
 import android.content.Intent;
-import android.icu.util.Calendar;
 import android.os.Build;
 import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
@@ -21,6 +20,7 @@ import java.lang.reflect.Array;
 import java.text.Normalizer;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Locale;
 
 public class DesgloseActivity extends AppCompatActivity {
 
@@ -42,7 +42,7 @@ public class DesgloseActivity extends AppCompatActivity {
         double amortizacion = cuotas - interes;
         double balance =  monto - amortizacion;
 
-/********************************************************************************************/
+//********************************************************************************************/
 /*
         TextView tb = (TextView) findViewById(R.id.topBar);
         tb.setText("   Cuotas    Interes    Amort.    Balance   Fecha");
@@ -59,7 +59,7 @@ public class DesgloseActivity extends AppCompatActivity {
 
         String fecha = mYear+"-"+ mMonth+"-"+mDay;
 
-/********************************************************************************************/
+//********************************************************************************************/
 
         GridView listView = (GridView) findViewById(R.id.listView);
         String[] values = new String[(int) plazo];
@@ -67,10 +67,10 @@ public class DesgloseActivity extends AppCompatActivity {
         for(int i = 0; i < values.length; i++)
         {
             values[i] = "Pago #"+(i+1)+"\n"+
-                        "Cuotas  :"+" "+ String.format("%.2f",cuotas)+"\n"+
-                        "Interes :"+" "+String.format("%.2f",interes)+"\n"+
-                        "Amort.  :"+" "+String.format("%.2f",amortizacion)+"\n"+
-                        "Balance :"+" "+String.format("%.2f",balance)+"\n"+
+                        "Cuotas  :"+" "+ String.format(Locale.getDefault(),"%.2f",cuotas)+"\n"+
+                        "Interes :"+" "+String.format(Locale.getDefault(),"%.2f",interes)+"\n"+
+                        "Amort.  :"+" "+String.format(Locale.getDefault(),"%.2f",amortizacion)+"\n"+
+                        "Balance :"+" "+String.format(Locale.getDefault(),"%.2f",balance)+"\n"+
                         "Fecha   :"+" "+fecha+"\n";
 
             interes = tasaInteres_100*balance;

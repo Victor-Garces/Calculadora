@@ -3,6 +3,14 @@
     <string name="intro">Bienvenidos al Simulador de Préstamos de Consumo</string>
     <string name="intro2">Este sistema interactivo permite establecer el valor de
                         la cuota de un préstamo de consumo, a partir de la información digitada por
-                        el usuario que corresponden al monto, la tasa de interés anual y el plazo
+                        el usuario que corresponden al monto, la tasa de interés y el plazo
                         solicitado expresados en meses.</string>
+
+    <string name="monto">Monto del prestamo en RD$</string>
+    <string name="tasa">Tasa de Interes</string>
+    <string name="plazo">Plazo (Meses)</string>
+    <string name="fecha">Fecha</string>
+    <string name="bttn">ACEPTAR</string>
+
+    <string name="tap">Tap to start</string>
 </resources>
