@@ -10,10 +10,11 @@
         android:id="@+id/topBar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="100dp"/>
-    <ListView
+        android:textSize="16dp"/>
+    <GridView
         android:id="@+id/listView"
+        android:numColumns="auto_fit"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content" />
 
 </LinearLayout>

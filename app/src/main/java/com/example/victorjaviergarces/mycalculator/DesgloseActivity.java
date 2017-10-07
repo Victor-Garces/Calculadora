@@ -8,6 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.GridView;
 import android.widget.ListView;
 
 import android.widget.TableLayout;
@@ -29,50 +30,48 @@ public class DesgloseActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_desglose);
 
-
         Intent intent = getIntent();
 
-        // Valores para el prestamo
+        /*  Valores para el prestamo  */
         double monto = intent.getIntExtra("montoPrestamo",0);
-
         double tasaInteres = intent.getIntExtra("tasaInteres",0);
         double tasaInteres_100 = tasaInteres/100;
-
         double plazo = intent.getIntExtra("plazoMeses",0);
-
         double interes = tasaInteres_100*monto;
-
         double cuotas = monto *((tasaInteres_100 * (1 + tasaInteres_100) * plazo) / (((1 + tasaInteres_100)*plazo)-1))*4.536;
-
         double amortizacion = cuotas - interes;
-
         double balance =  monto - amortizacion;
-        // // // // //------------------------ // // // //
 
+/********************************************************************************************/
+/*
         TextView tb = (TextView) findViewById(R.id.topBar);
-        tb.setText("    "+"Cuotas"+"     "+"Interes"+"     "+"Amortizacion"+"     "+"Balance");
-
-        /*final Calendar c = Calendar.getInstance();
+        tb.setText("   Cuotas    Interes    Amort.    Balance   Fecha");
+/*
+        final Calendar c ;
+        c = (Calendar) intent.getSerializableExtra("calendar");
         int mYear = c.get(Calendar.YEAR);
-        int mMonth = c.get(Calendar.MONTH);
+        int mMonth = c.get(Calendar.MONTH)+1;
         int mDay = c.get(Calendar.DAY_OF_MONTH);
+*/
+        int mDay = intent.getIntExtra("day",0);
+        int mMonth = intent.getIntExtra("month",0);
+        int mYear = intent.getIntExtra("year",0);
 
-        TextView time=(TextView) findViewById(R.id.my_plazoMes);
-        time.setText(mYear+" "+ mMonth+" "+mDay+" ");*/
+        String fecha = mYear+"-"+ mMonth+"-"+mDay;
 
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
-        String currentDate = sdf.format(new Date());
+/********************************************************************************************/
 
-        ListView listView = (ListView) findViewById(R.id.listView);
-
+        GridView listView = (GridView) findViewById(R.id.listView);
         String[] values = new String[(int) plazo];
 
         for(int i = 0; i < values.length; i++)
         {
-            values[i] = String.format("%.2f",cuotas)+
-                    "\t"+String.format("%.2f",interes)+
-                    "\t"+String.format("%.2f",amortizacion)+
-                    "\t"+String.format("%.2f",balance);
+            values[i] = "Pago #"+(i+1)+"\n"+
+                        "Cuotas  :"+" "+ String.format("%.2f",cuotas)+"\n"+
+                        "Interes :"+" "+String.format("%.2f",interes)+"\n"+
+                        "Amort.  :"+" "+String.format("%.2f",amortizacion)+"\n"+
+                        "Balance :"+" "+String.format("%.2f",balance)+"\n"+
+                        "Fecha   :"+" "+fecha+"\n";
 
             interes = tasaInteres_100*balance;
             amortizacion = cuotas - interes;
@@ -81,6 +80,8 @@ public class DesgloseActivity extends AppCompatActivity {
         listView.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, values));
 
     }
+
+
 
 
 }

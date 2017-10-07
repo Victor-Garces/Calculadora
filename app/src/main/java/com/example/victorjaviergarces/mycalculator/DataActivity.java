@@ -18,7 +18,7 @@ import java.text.DateFormat;
 import java.util.Date;
 
 public class DataActivity extends AppCompatActivity{
-/*/*******************************************************************************************/
+/********************************************************************************************/
 
         /*DatePicker Variables*/
     Calendar mCalendar;
@@ -28,9 +28,8 @@ public class DataActivity extends AppCompatActivity{
         /*Variable de envio de datos*/
     Button aceptar;
 
-        /*Variables de Entrada de Datos*/
 
-/*/*******************************************************************************************/
+/********************************************************************************************/
 
     @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
@@ -38,54 +37,68 @@ public class DataActivity extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_data);
 
-    /*Seteo de la fecha*/
-        tv = (TextView) findViewById(R.id.my_fecha);
-        mCalendar = Calendar.getInstance();
+        /*Seteo de la fecha*/
+                tv = (TextView) findViewById(R.id.my_fecha);
+                mCalendar = Calendar.getInstance();
 
-        day = mCalendar.get(Calendar.DAY_OF_MONTH);
-        month = mCalendar.get(Calendar.MONTH)+1;
-        year = mCalendar.get(Calendar.YEAR);
+                day = mCalendar.get(Calendar.DAY_OF_MONTH);
+                month = mCalendar.get(Calendar.MONTH)+1;
+                year = mCalendar.get(Calendar.YEAR);
 
-        tv.setText(day+"/"+month+"/"+year);
+                tv.setText(day+"/"+month+"/"+year);
 
-        tv.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                DatePickerDialog datePickerDialog = new DatePickerDialog(DataActivity.this, new DatePickerDialog.OnDateSetListener() {
+                tv.setOnClickListener(new View.OnClickListener() {
                     @Override
-                    public void onDateSet(DatePicker datePicker, int year, int monthOfYear, int dayOfMonth) {
-                        monthOfYear = monthOfYear+1;
-                        tv.setText(dayOfMonth+"/"+monthOfYear+"/"+year);
-                    }
-                },year,month,day);
-                datePickerDialog.show();
-            }
-        });
+                    public void onClick(View view) {
+                        DatePickerDialog datePickerDialog = new DatePickerDialog(DataActivity.this, new DatePickerDialog.OnDateSetListener() {
+                            @Override
+                            public void onDateSet(DatePicker datePicker, int year, int monthOfYear, int dayOfMonth) {
+                                monthOfYear = monthOfYear+1;
+                                tv.setText(dayOfMonth+"/"+monthOfYear+"/"+year);
+                            }
+                        },year,month,day);
 
-        /*Envio de datos del Monto del Prestamo*/
+                        datePickerDialog.show();
+                    }
+                });
+
+/********************************************************************************************/
 
         aceptar = (Button) findViewById(R.id.my_button);
         aceptar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
+                /*Datos del Monto del Prestamo*/
+
                 Intent intent = new Intent(DataActivity.this,DesgloseActivity.class);
+                intent = intent.putExtra("day",day);
+                intent = intent.putExtra("month",month);
+                intent = intent.putExtra("year",year);
 
-                EditText text_monto = (EditText) findViewById(R.id.my_monto_prestamo);
-                int monto = Integer.parseInt(text_monto.getText().toString());
+                EditText textMonto = (EditText) findViewById(R.id.my_monto_prestamo);
+                EditText textTasa = (EditText) findViewById(R.id.my_tasa_interes);
+                EditText textPlazo = (EditText) findViewById(R.id.my_plazo);
 
+                String sMonto =textMonto.getText().toString();
+                String sTasa =textTasa.getText().toString();
+                String sPlazo =textPlazo.getText().toString();
 
-                EditText text_tasa = (EditText) findViewById(R.id.my_tasa_interes);
-                int interes = Integer.parseInt(text_tasa.getText().toString());
+                if (sMonto.matches("")||sMonto.matches("")||sMonto.matches("")) {
+                    Toast.makeText(DataActivity.this, "Rellene todos los campos", Toast.LENGTH_SHORT).show();
+                }
+                else{
+                    int monto = Integer.parseInt(sMonto);
+                    int interes = Integer.parseInt(sTasa);
+                    int plazo = Integer.parseInt(sPlazo);
 
-                EditText text_plazo = (EditText) findViewById(R.id.my_plazo);
-                int plazo = Integer.parseInt(text_plazo.getText().toString());
+                    intent.putExtra("tasaInteres",interes);
+                    intent.putExtra("montoPrestamo",monto);
+                    intent.putExtra("plazoMeses",plazo);
 
-                intent.putExtra("tasaInteres",interes);
-                intent.putExtra("montoPrestamo",monto);
-                intent.putExtra("plazoMeses",plazo);
+                    startActivity(intent);
+                }
 
-                startActivity(intent);
             }
         });
 
